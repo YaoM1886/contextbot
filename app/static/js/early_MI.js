@@ -1,7 +1,7 @@
 // js script for early_MI condition
 
 // different dimensions of contexts
-const social_cxt_MI = "to listen to and engage the user in this session";
+const social_cxt_MI = "to <strong>listen to and engage the user in this session</strong>";
 const semantic_cxt_MI = `<ul>
 <li>The user has broken up with her boyfriend. </li>
 <li>She also feels upset and confused about what's been going on.</li>
@@ -64,19 +64,19 @@ $("document").ready(function(){
 
         // initial greetings from ContextBot
         $(this).replaceWith(
-            "<div id='botWindow'><div id='botHeader'><h3>Chat with me </h3> </div><div id='botContainer'></div></div>"
+            "<div id='botWindow'><div id='botHeader'><h5>Chat with me </h5> </div><div id='botContainer'></div></div>"
         );
 
-        $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height="30%" width="30%" alt="Bot"/></div>`+"<div class='botText'>"+"Hi, I am your ContextBot today!"+"</div></div>");
-        $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height='30%' width='30%' alt='Bot' /></div>`+"<div class='botText'>"+"I will walk you through the important contexts that have been talked in previous conversation turns. They will help you better understand how the conversation comes to the current turn <code>Yes! It is so sad.</code> Shall we begin?"+"</div></div>");
+        $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height="40%" width="40%" alt="Bot"/></div>`+"<div class='botText'>"+"Hi, I am your ContextBot today!"+"</div></div>");
+        $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height='40%' width='40%' alt='Bot' /></div>`+"<div class='botText'>"+"I will walk you through the important contexts that have been talked in previous conversation turns. They will help you better understand how the conversation comes to the current turn <code>Yes! It is so sad.</code> Shall we begin?"+"</div></div>");
 
-        addQuickReplyBtn(["Yes, let us begin!", "Emm...give me a minute"]);
+        addQuickReplyBtn(["Sure, let us begin!", "Hmm...I think so."]);
         sendReply(callbackReply, "social_cxt_MI");
 
     })
 
     function preprocessReply(reply_string){
-        const re = /(Yes|Ok)*/;
+        const re = /Sure|Yes|Hmm|Maybe|Nice|Okay|Wow*/;
         return (re.test(reply_string));
     }
 
@@ -107,7 +107,7 @@ $("document").ready(function(){
 
             addCxtPrompts("social_cxt_MI");
             setTimeout(() => {
-                addQuickReplyBtn(["Yes, very clear!"]);
+                addQuickReplyBtn(["Yes, very clear!", "Well...I still don't understand."]);
                 $('#botContainer').scrollTop($('#botContainer')[0].scrollHeight);
                 sendReply(callbackReply, "linguistic_cxt_MI");
             }, 1800);
@@ -115,23 +115,23 @@ $("document").ready(function(){
         }else if (replyBool && cxtTag == "linguistic_cxt_MI"){
             addCxtPrompts("linguistic_cxt_MI");
             setTimeout(() => {
-                addQuickReplyBtn(["Yes, tell me more!"]);
+                addQuickReplyBtn(["Yes, I'm totally aware now!", "Not really...I am confused."]);
                 $('#botContainer').scrollTop($('#botContainer')[0].scrollHeight);
                 sendReply(callbackReply, "semantic_cxt_MI");
-            }, 6000);
+            }, 5000);
 
 
         }else if (replyBool && cxtTag == "semantic_cxt_MI"){
             addCxtPrompts("semantic_cxt_MI");
             setTimeout(() => {
-                addQuickReplyBtn(["Yes, I am ready!"]);
+                addQuickReplyBtn(["Yes, I am ready!", "Maybe...you can tell me more."]);
                 $('#botContainer').scrollTop($('#botContainer')[0].scrollHeight);
                 sendReply(callbackReply, "cognitive_cxt_MI");
             }, 6000);
         }else if (replyBool && cxtTag == "cognitive_cxt_MI"){
             addCxtPrompts("cognitive_cxt_MI");
             setTimeout(() => {
-                addQuickReplyBtn(["OK, anything else?"]);
+                addQuickReplyBtn(["Wow, I think I've known enough!", "Okay, anything else?"]);
                 $('#botContainer').scrollTop($('#botContainer')[0].scrollHeight);
                 sendReply(callbackReply, "templates_MI");
             }, 6000);
@@ -140,7 +140,24 @@ $("document").ready(function(){
             addCxtPrompts();
             $('#botContainer').scrollTop($('#botContainer')[0].scrollHeight);
 
+        }else if (!replyBool && cxtTag == "linguistic_cxt_MI"){
+            messageText = "Don't worry. You will get more information on the user and how to respond sympathetically. Keep following:)";
+            contextBotSendMessage(messageText);
+            setTimeout(()=>{
+                callbackReply(true, "linguistic_cxt_MI");
+            }, 1500);
+
+        }else if (!replyBool && cxtTag == "semantic_cxt_MI"){
+            messageText = `The highlighted texts you've seen on the left chat window show the relevant situation which the keyword <a href='#highlightCxt0' id='linkToCxt'>"It"</a> refers to. How about you let me give you more context and then you can know better?`;
+            contextBotSendMessage(messageText);
+            setTimeout(()=>{
+                addQuickReplyBtn(["Nice, I'd like that.", "Okay, share what you have with me."]);
+                $('#botContainer').scrollTop($('#botContainer')[0].scrollHeight);
+                sendReply(callbackReply, "semantic_cxt_MI");
+            }, 1800);
+
         }
+
     }
 
     // start the prompts with context
@@ -186,10 +203,17 @@ $("document").ready(function(){
                 break;
             default:
                 messageText = `
-                <div>Congratulations! You have mastered all the context discussed earlier. It's time to respond to the user with MI techniques. I have prepared some templates for you. Feel free to use them and be a good counsellor! Good luck!</div>
-                <p>Click any number of them to use on the left chat window:</p>
-                <button class="addable">You must have been so &nbsp. Could you please elaborate more on &nbsp?</button>`;
+                <p>Congratulations! You have mastered all the context discussed earlier. It's time to respond to the user with MI techniques.</p>`;
+                messageText1 = `<p>Below you will find the techniques commonly used for making better responses as a coach. Good luck!</p>`;
+                messageText2 = `
+                <dl><dt>Reflective listening:</dt><dd>This involves listening to what the user means; it requires you to be aware of nuance in their expressions and not be judgmental. For example: "I know that annoyed you"; "You don't know what to do about that"...</dd></dl>
+                <dl><dt>Affirmations:</dt><dd>You use positive emotions to encourage the user, such as "I appreciate your willingness to share so openly"; "I see you are being honest"...</dd></dl>
+                <dl><dt>Open question:</dt><dd>This requires you to come up with open questions where answers are not expected, such as "What was it like for you when...?"; "Could you please elaborate more on...?"...</dd></dl>
+                
+                `;
                 contextBotSendMessage(messageText);
+                setTimeout(()=>{contextBotSendMessage(messageText1)}, 2000);
+                setTimeout(()=>{contextBotSendMessage(messageText2)}, 4000);
 
         }
     }
@@ -212,7 +236,7 @@ $("document").ready(function(){
         const typingHTML = `
             <div class='botMsg'> 
             <div class='botImg'>
-            <img height='30%' width='30%' alt='Bot' style='vertical-align:middle' src='/static/img/bot.jpg' />
+            <img height='40%' width='40%' alt='Bot' style='vertical-align:middle' src='/static/img/bot.jpg' />
                     <div class="typing">
                     <span class="circle scaling"></span>
                     <span class="circle scaling"></span>
@@ -244,7 +268,7 @@ $("document").ready(function(){
 
     function workerSendMessage(messageText){
 
-        $("#botContainer").append("<div style='float:right; margin:10px; font-size:18px; background-color:#425B76; color:white; width:30%; height:6%; text-align:center; padding:6px; border-radius: 0 3% 3% 3%'>"+messageText+"</div><br><br>");
+        $("#botContainer").append("<div style='float:right; margin:10px; font-size:14px; background-color:#425B76; color:white; height:6%; text-align:center; padding:6px; border-radius: 0 3% 3% 3%'>"+messageText+"</div><br><br>");
     }
 
 
@@ -333,9 +357,5 @@ $("document").ready(function(){
 
     })
 
-    $(document).on("click", "#botContainer .botMsg .botText .addable", function() {
-        document.getElementById("textbox").innerHTML = $(this).text();
-
-    })
 })
 
