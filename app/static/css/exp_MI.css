@@ -1,0 +1,275 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+    /*  */
+    font-family:Arial, sans-serif;
+    margin: 0;
+    background-color:white;
+    font-size: 18px;
+}
+/* this is for styling header */
+#chatHeader{
+    width: 800px;
+    height: 60px;
+    margin-left: 100px;
+    margin-top: 80px;
+    background-color:#425B76;
+}
+/* styling text to be displayed on header */
+#chatHeader>h1{
+    padding-left: 33px;
+    width : 900px;
+    margin-left: 100px;
+    float: left;
+    color: white;
+}
+/*style for chat box */
+#chatContainer{
+    width : 800px;
+    height: 600px;
+    margin-left:100px;
+    background-color: white;
+    border: 1px solid lightslategrey;
+    float: left;
+    overflow: scroll; /* for overflow effect */
+}
+/* style for controlls */
+#chatInput{
+    width : 800px;
+    margin-left: 100px;
+}
+/* style input message box */
+#textbox{
+    height: 50px;
+    resize: none;
+    width: 720px;
+    font-size: 18px;
+}
+
+#helpIcon{
+    margin-right: 300px;
+    margin-left: auto;
+    margin-top: 250px;
+}
+.clickText{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px #425B76;
+    }
+    to {
+        text-shadow: 0 0 30px #34b3c1, 0 0 10px #4dbbc7;
+    }
+}
+
+
+:target{
+    background-color: yellow;
+
+}
+
+.focused {
+    /* even more sweet CSS */
+
+    background-color: orange;
+}
+.unfocused{
+
+    background-color: yellow;
+}
+
+#botWindow{
+    width: 700px;
+    height: 800px;
+    margin-right: 100px;
+    margin-left: auto;
+    margin-top: 60px;
+
+}
+
+#botHeader{
+
+    width: 700px;
+    height: 50px;
+    background-color:#425B76;
+}
+
+#botHeader>h3{
+    padding-left: 33px;
+    width : 900px;
+    float: left;
+    color: white;
+}
+
+#botContainer{
+    width: 700px;
+    height: 700px;
+    margin-right: 250px;
+    margin-left: auto;
+    border: 1px solid lightslategrey;
+    overflow-y: scroll;
+
+}
+
+
+/* style send button */
+#sendBtn{
+    font-size: 24px;
+    position: absolute;
+    height: 50px;
+}
+/*style class username */
+.userMsg{
+    text-align: left;
+    width: 450px;
+}
+.coachMsg{
+    text-align: right;
+    width: 450px;
+    margin-right: 20px;
+    margin-left: auto;
+}
+
+.action_btn{
+    padding-right: 5px;
+    text-align: center;
+}
+
+.quickReplyBtn{
+    padding: 5px;
+    font-size: 18px;
+}
+
+.botMsg{
+    text-align: left;
+    width: 80%;
+}
+.botImg{
+    width: 50%;
+    height: 50%;
+    /* float: inline-start; */
+
+}
+
+.botText{
+    width: 360px;
+    margin-top: -60px;
+    margin-left: 90px;
+    padding:15px;
+    display: inline-block;
+    word-wrap: break-word;
+    border-radius: 0% 3% 3% 3%;
+    /*border-style: groove;*/
+    background-color: #EAF0F6;
+    color: #425B76;
+
+}
+.thanksMsg{
+    text-align: center;
+    font-size: 26px;
+}
+
+.user{
+    color: blue;
+    font-weight: bold;
+}
+/* style bot class  */
+.coach{
+    color: green;
+    font-weight: bold;
+
+}
+
+/* style for typing bubbles */
+
+.typing{
+    display: inline-block;
+    /*width: 60px;*/
+    /*height: 40px;*/
+    width: 300px;
+    border-radius: 20px;
+    margin: 0 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle{
+    display: block;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: #38313150;
+    margin: 3px;
+}
+
+@keyframes typingTime{
+    0% {transform: scale(1)}
+    33% {transform: scale(1)}
+    50% {transform: scale(1.4)}
+    100% {transform: scale(1)}
+
+}
+
+
+.circle:nth-child(1){
+    animation: typingTime 1.5s infinite;
+    animation-delay: 0ms;
+}
+
+.circle:nth-child(2){
+    animation: typingTime 1.5s infinite 0.2s;
+
+}
+
+.circle:nth-child(3){
+    animation: typingTime 1.5s infinite 0.4s;
+}
+
+.collapsible {
+    background-color: #7a8c9f;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 17px;
+}
+
+.active, .collapsible:hover {
+    background-color: #425B76;
+}
+
+.collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.content {
+    padding: 0 18px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #EAF0F6;
+}
+
+
+
+
+
+
+
+

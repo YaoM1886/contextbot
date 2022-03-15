@@ -1,0 +1,16 @@
+# Flask Framework
+Flask
+
+# Flask Packages
+Flask-Login
+Flask-Migrate
+Flask-Script
+Flask-SQLAlchemy
+Flask-WTF
+gunicorn
+flask_bootstrap
+requests
+psycopg2-binary
+flask_bcrypt
+email_validator
+flask-session
