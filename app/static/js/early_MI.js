@@ -70,7 +70,7 @@ $("document").ready(function(){
         $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height="30%" width="30%" alt="Bot"/></div>`+"<div class='botText'>"+"Hi, I am your ContextBot today!"+"</div></div>");
         $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height='30%' width='30%' alt='Bot' /></div>`+"<div class='botText'>"+"I will walk you through the important contexts that have been talked in previous conversation turns. They will help you better understand how the conversation comes to the current turn <code>Yes! It is so sad.</code> Shall we begin?"+"</div></div>");
 
-        addQuickReplyBtn(["Yes, let us begin!"]);
+        addQuickReplyBtn(["Yes, let us begin!", "Emm...give me a minute"]);
         sendReply(callbackReply, "social_cxt_MI");
 
     })
