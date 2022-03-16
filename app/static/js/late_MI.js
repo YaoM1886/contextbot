@@ -69,8 +69,8 @@ $("document").ready(function(){
             "<div id='botWindow'><div id='botHeader'><h5>Chat with me </h5> </div><div id='botContainer'></div></div>"
         );
 
-        $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height="40%" width="40%" alt="Bot"/></div>`+"<div class='botText'>"+"Hi, I am your ContextBot today!"+"</div></div>");
-        $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height='40%' width='40%' alt='Bot'  /></div>`+"<div class='botText'>"+"I will walk you through the important contexts that have been talked in previous conversation turns. They will help you better understand how the conversation comes to the current turn <code>I might just take a walk or see my friends. But like I said, it seems like they don\u2019t want to be around me so much anymore because I bring them down with me. Do you have some suggestions on what I should do?</code> Shall we begin?"+"</div></div>");
+        $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height="40%" width="40%" alt="Bot"/></div>`+"<div class='botText'>"+"Hi, I am your ContextBot today! I will walk you through the important contexts that have been talked in previous conversation turns."+"</div></div>");
+        $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height='40%' width='40%' alt='Bot'  /></div>`+"<div class='botText'>"+"The contexts will help you better understand how the conversation comes to the current turn <code>I might just take a walk or see my friends. But like I said, it seems like they don\u2019t want to be around me so much anymore because I bring them down with me. Do you have some suggestions on what I should do?</code> Shall we begin?"+"</div></div>");
 
         addQuickReplyBtn(["Sure, let us begin!", "Hmm...I think so."]);
         sendReply(callbackReply, "social_cxt_MI");
