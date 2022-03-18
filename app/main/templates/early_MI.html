@@ -44,5 +44,14 @@
 
 </div>
 
+<div>
+    <button class="submit_task">Submit Task</button>
+</div>
+<script>
+    $(".submit_task").click(function (){
+    var prolific_q_str = window.location.search;
+    window.location.replace("https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_7VRHG9PMepAPyU6" + prolific_q_str);
+    })
+</script>
 </body>
 </html>

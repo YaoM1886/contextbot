@@ -12,7 +12,14 @@
 <div style="width: 500px; height: 500px; border: solid #425B76 2px; margin: auto">
 
 </div>
-<p align="center"><a href=early_MI><button class=grey style="height:75px;width:150px; font-size: 30px">Start Task</button></a></p>
+<p align="center"><button class=start_task style="height:75px;width:150px; font-size: 30px">Start Task</button></p>
 
+
+<script>
+    $(".start_task").click(function (){
+        var prolific_q_str = window.location.search;
+        window.location.replace("https://contextbot.herokuapp.com/early_MI" + prolific_q_str);
+    })
+</script>
 </body>
 </html>
