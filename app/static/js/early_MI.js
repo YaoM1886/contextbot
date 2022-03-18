@@ -16,7 +16,7 @@ const cognitive_cxt_MI_2 = `<dl>
 const cognitive_cxt_MI_3 = `<dl>
 <dd>continue improving the engagement of this dialog by providing <strong>empathetic and reflective listening</strong>.</dd>
 </dl>`;
-
+console.log("this is testing");
 // insert the chat history here
 const historyBotText = ["You are feeling upset and confused. One confusing thing, then, is you don\u2019t understand why you\u2019re doing what you\u2019re doing. What\u2019s been happening?", "This blowup wasn\u2019t the first time that\u2019s happened to you.", "Kind of like a pattern that\u2019s repeating itself."];
 const historyUserText=

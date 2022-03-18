@@ -1,9 +1,12 @@
 from app.main import main
 from flask import render_template
+from flask import request
 
 
 @main.route('/')
 def index_MI():
+    worker_id = request.args.get('PROLIFIC_PID')
+    print("This is the worker", worker_id)
     return render_template("index_MI.html")
 
 
