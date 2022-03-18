@@ -5,14 +5,13 @@ from flask import request, session
 
 @main.route('/')
 def index_MI():
-    worker_id = request.args.get('PROLIFIC_PID')
-    session["worker_id"] = worker_id
+    # worker_id = request.args.get('PROLIFIC_PID')
+    # session["worker_id"] = worker_id
     return render_template("index_MI.html")
 
 
 @main.route('/early_MI')
 def early_MI():
-    worker_id = session.get('worker_id')
     return render_template("early_MI.html")
 
 
