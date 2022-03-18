@@ -1,17 +1,18 @@
 from app.main import main
 from flask import render_template
-from flask import request
+from flask import request, url_for, redirect
 
 
-@main.route('/')
+@main.route('/index_MI')
 def index_MI():
     worker_id = request.args.get('PROLIFIC_PID')
-    print("This is the worker", worker_id)
-    return render_template("index_MI.html")
+    return redirect(url_for('main.early_MI', name=worker_id))
 
 
-@main.route('/early_MI')
-def early_MI():
+@main.route('/early_MI/<worker_id>')
+def early_MI(worker_id):
+    db_worker = worker_id
+    print("This is gonna be in db", db_worker)
     return render_template("early_MI.html")
 
 
