@@ -17,7 +17,7 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = "4*z]NLj$Lm@pk?dA"
 
-    configuration = os.path.join(os.getcwd(), 'config', 'dev.py')
+    configuration = os.path.join(os.getcwd(), 'config', 'prod.py')
     #  to load the configuration file
     app.config.from_pyfile(configuration)
     #
