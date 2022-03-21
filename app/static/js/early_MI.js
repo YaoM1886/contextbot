@@ -1,5 +1,9 @@
 // js script for early_MI condition
 
+// extract worker's prolific ID
+var prolific_q_str = window.location.search;
+const w_id = prolific_q_str.split("?PROLIFIC_PID=")[1]
+
 // different dimensions of contexts
 const social_cxt_MI = "to <strong>listen to and engage the user in this session</strong>";
 const semantic_cxt_MI = `<ul>
@@ -16,7 +20,7 @@ const cognitive_cxt_MI_2 = `<dl>
 const cognitive_cxt_MI_3 = `<dl>
 <dd>continue improving the engagement of this dialog by providing <strong>empathetic and reflective listening</strong>.</dd>
 </dl>`;
-console.log("this is testing");
+
 // insert the chat history here
 const historyBotText = ["You are feeling upset and confused. One confusing thing, then, is you don\u2019t understand why you\u2019re doing what you\u2019re doing. What\u2019s been happening?", "This blowup wasn\u2019t the first time that\u2019s happened to you.", "Kind of like a pattern that\u2019s repeating itself."];
 const historyUserText=
@@ -31,6 +35,20 @@ const linguistic_cxt_link_ids = {"Bot": [2], "User": [2]};
 
 // start loading the experiment page
 $("document").ready(function(){
+    $.ajax({
+        type: "POST",
+        url: "/setTime",
+        data: JSON.stringify({
+            "workerID": w_id
+        }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(data) {
+            console.log(JSON.stringify(data));
+        }
+    });
+
+
     var highlightCounter = 0;
     // show the chat history in the window
     for (i=0; i<historyBotText.length; i++) {
@@ -60,6 +78,19 @@ $("document").ready(function(){
     // after clicking the help icon, start the interaction with ContextBot
     $("#helpIcon").click(function(){
 
+        $.ajax({
+            type: "POST",
+            url: "/workerClick",
+            data: JSON.stringify({
+                "b_name": $(this).name
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            }
+        });
+
         // initial greetings from ContextBot
         $(this).replaceWith(
             "<div id='botWindow'><div id='botHeader'><h5>Chat with me </h5> </div><div id='botContainer'></div></div>"
@@ -72,13 +103,13 @@ $("document").ready(function(){
         addQuickReplyBtn(["Sure, let us begin!", "Hmm...I think so."]);
         sendReply(callbackReply, "social_cxt_MI");
 
-    })
+    });
+
 
     function preprocessReply(reply_string){
         const re = /Sure|Yes|Hmm|Maybe|Nice|Okay|Wow*/;
         return (re.test(reply_string));
     }
-
 
     function addQuickReplyBtn(options) {
         var q = "<div class='action_btn'>";
@@ -95,6 +126,20 @@ $("document").ready(function(){
             var text = $(this).text();
             $('#botContainer div').last().remove();
             workerSendMessage(text);
+
+            $.ajax({
+                type: "POST",
+                url: "/workerClick",
+                data: JSON.stringify({
+                    "b_name": text
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data) {
+                    console.log(JSON.stringify(data));
+                }
+            });
+
             replyBool = preprocessReply(text);
             callbackReply(replyBool, cxtTag);
         })
@@ -219,19 +264,6 @@ $("document").ready(function(){
 
     function contextBotSendMessage(messageText){
 
-        // $.ajax({
-        //     type: "GET",
-        //     url: "/setTime",
-        //     data: JSON.stringify({
-        //       "nothing": {}
-        //     }),
-        //     contentType: "application/json; charset=utf-8",
-        //     dataType: "json",
-        //     success: function(data) {
-        //     console.log(JSON.stringify(data));
-        //     }
-        // });
-
         const typingHTML = `
             <div class='botMsg'> 
             <div class='botImg'>
@@ -278,16 +310,13 @@ $("document").ready(function(){
     $("#textbox").keypress(function(event){
         //    to check only for enter key (13 is value for enter)
         if(event.which==13){
-            // clear textbox when checkbox is clicked and user presses enter key
             $("#sendBtn").click();
             // to prevent creating new line on pressing Enter key, when checkbox is checked
             event.preventDefault();
-
         }
-
     });
 
-    $("#sendBtn").one("click", function(){
+    $("#sendBtn").on("click", function(){
         // before clearing the textbox we store its values in variable newmsg
         var newmsg=$("#textbox").val();
         $("#textbox").val("");
@@ -296,9 +325,9 @@ $("document").ready(function(){
         // to scroll the contents in container in case of overflow
         $("#chatContainer").scrollTop($("#chatContainer").prop("scrollHeight"));
         // converts all user inputs to lower case
-        sendThanks();
         $('#chatContainer').scrollTop($('#chatContainer')[0].scrollHeight);
     });
+
 
 
     var len_index_highlight_cxt = linguistic_cxt_link_ids["Bot"].length + linguistic_cxt_link_ids["User"].length - 1;
@@ -354,7 +383,29 @@ $("document").ready(function(){
             content.style.maxHeight = content.scrollHeight + "px";
         }
 
-    })
+    });
+
+    $(".submit_task").click(function (){
+        sendThanks();
+
+        $.ajax({
+            type: "POST",
+            url: "/endTime",
+            data: JSON.stringify({
+                "endTask": true
+
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            }
+        });
+
+        // setTimeout(()=>{
+        //     window.location.replace("https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_7VRHG9PMepAPyU6" + prolific_q_str);
+        // }, 1500)
+    });
 
 })
 

@@ -3,53 +3,38 @@ import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
-from flask_login import LoginManager
-from flask_bcrypt import Bcrypt
-from app.main import main
 from flask_session import Session
-# db = SQLAlchemy()
-#
+from flask_migrate import Migrate
+
+
+db = SQLAlchemy()
 bootstrap = Bootstrap()
-# login_manager = LoginManager()
-
-# # we need to tell Flask about the login view
-# login_manager.login_view = 'authentication.do_the_login'
-# # we can set the level of security, in this case, we chose strong.
-# # the flask will delete the session or cookies and forces the user to login again
-# # to protect the data
-# login_manager.session_protection = 'strong'
-
-# bcrypt = Bcrypt()
+migrate = Migrate()
 
 
 def create_app():
 
     app = Flask(__name__)
-    # app.secret_key = "4*z]NLj$Lm@pk?dA"
+    app.secret_key = "4*z]NLj$Lm@pk?dA"
 
-    # configuration = os.path.join(os.getcwd(), 'config', "dev" + '.py')
-    # #  to load the configuration file
-    # app.config.from_pyfile(configuration)
+    configuration = os.path.join(os.getcwd(), 'config', 'dev.py')
+    #  to load the configuration file
+    app.config.from_pyfile(configuration)
     #
-    # app.config['SESSION_TYPE'] = 'sqlalchemy'
-    # app.config['SESSION_SQLALCHEMY'] = db
+    app.config['SESSION_TYPE'] = 'sqlalchemy'
+    app.config['SESSION_SQLALCHEMY'] = db
     #
     app.static_folder = 'static'
     Session(app)
     #
-    # #  to attach the Flask app with DB instance created on line # 7
-    # db.init_app(app)
-    #
-    #you also need to initialize Bootstrap with flask ( or integgrate flask app with bootstrap)
-    bootstrap.init_app(app)
-    #
-    # login_manager.init_app(app)
-    # bcrypt.init_app(app)
-    #
-    # # from app.auth import authentication   # import blueprint (the name was main)
-    # # app.register_blueprint(authentication) # register blueprint
-    #
+    # to attach the Flask app with DB instance created on line
+    db.init_app(app)
+    migrate.init_app(app, db)
 
+    # initialize Bootstrap with flask
+    bootstrap.init_app(app)
+
+    from app.main import main
     app.register_blueprint(main)
 
     return app

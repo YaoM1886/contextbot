@@ -1,15 +1,11 @@
-from app import create_app
-from sqlalchemy import exc
-from flask import session
-
-
+from app import create_app, db
 
 # --------local testing----------------
 flask_app = create_app()
 if __name__ == "__main__":
-    # with flask_app.app_context():
-    #     db.create_all()
-    flask_app.run(debug=True)
+    with flask_app.app_context():
+        db.create_all()
+    flask_app.run()
 # ------------------------------------------
 
 # #-----------------PRODUCTION---------------------

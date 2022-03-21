@@ -11,6 +11,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- link for css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link  rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/exp_MI.css')}}">
 
 </head>
@@ -29,9 +30,14 @@
         </div>
 
         <div id="chatInput">
-            <textarea id="textbox" placeholder="As a coach, how would you respond to the user?"></textarea>
+            <form action="#" method="post">
+            <textarea id="textbox" name= "input_message" placeholder="As a coach, how would you respond to the user?"></textarea>
+                <button id="sendBtn" type="button">Send</button>
+                <span class="w3-tag w3-teal">You can type and send the response multiple times until you click <button class="submit_task" type="submit" style="color:#425B76">Submit Task</button> to finish.</span>
             <!-- send button -->
-            <button id="sendBtn", type="button">Send</button><br>
+
+            </form>
+
         </div>
     </div>
 
@@ -44,14 +50,5 @@
 
 </div>
 
-<div>
-    <button class="submit_task">Submit Task</button>
-</div>
-<script>
-    $(".submit_task").click(function (){
-    var prolific_q_str = window.location.search;
-    window.location.replace("https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_7VRHG9PMepAPyU6" + prolific_q_str);
-    })
-</script>
 </body>
 </html>
