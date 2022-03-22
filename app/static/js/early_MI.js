@@ -39,7 +39,7 @@ $("document").ready(function(){
         type: "POST",
         url: "/setTime",
         data: JSON.stringify({
-            "workerID": w_id
+            "prolificID": w_id
         }),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -82,7 +82,7 @@ $("document").ready(function(){
             type: "POST",
             url: "/workerClick",
             data: JSON.stringify({
-                "b_name": $(this).name
+                "b_name": "Clicked the ContextBot Icon"
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -311,29 +311,75 @@ $("document").ready(function(){
         //    to check only for enter key (13 is value for enter)
         if(event.which==13){
             $("#sendBtn").click();
+
             // to prevent creating new line on pressing Enter key, when checkbox is checked
             event.preventDefault();
         }
     });
 
     $("#sendBtn").on("click", function(){
-        // before clearing the textbox we store its values in variable newmsg
         var newmsg=$("#textbox").val();
+
+        $.ajax({
+            type: "POST",
+            url: "/message",
+            data: JSON.stringify({
+                "message": newmsg,
+                "status": "Added"
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            }
+        });
+        // before clearing the textbox we store its values in variable newmsg
+
         $("#textbox").val("");
         // to display users message on screen
-        $("#chatContainer").append("<div class='coachMsg'>"+"<span class='coach'>Coach: </span>"+newmsg+"</div>"+"<br>");
+        $("#chatContainer").append("<div class='coachMsg'>"+"<span class='coach'>Coach: </span>"+"<span>"+newmsg+"</span>"+"&nbsp;"+"<button type='reset' class='reset' style='font-size: 13px'>Reset</button>"+"</div>"+"<br>");
         // to scroll the contents in container in case of overflow
         $("#chatContainer").scrollTop($("#chatContainer").prop("scrollHeight"));
         // converts all user inputs to lower case
         $('#chatContainer').scrollTop($('#chatContainer')[0].scrollHeight);
+
     });
 
-
+    $(document).on("click", "#chatContainer .coachMsg .reset", function (){
+        $(this).parent().remove();
+        $("#textbox").val($(this).prev().text());
+        $.ajax({
+            type: "POST",
+            url: "/message",
+            data: JSON.stringify({
+                "message": $(this).prev().text(),
+                "status": "Deleted"
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            }
+        });
+    });
 
     var len_index_highlight_cxt = linguistic_cxt_link_ids["Bot"].length + linguistic_cxt_link_ids["User"].length - 1;
     var clickCounter = 0;
 
     $(document).on("click", "#botContainer .botMsg .botText #linkToCxt", function(){
+        $.ajax({
+            type: "POST",
+            url: "/workerClick",
+            data: JSON.stringify({
+                "b_name": "Clicked the linked text"
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            }
+        });
+
         $("#highlightCxt0").removeClass('unfocused');
         $("#highlightCxt0").addClass('focused');
         for (clickIndex=1; clickIndex<=len_index_highlight_cxt; clickIndex++){
@@ -346,6 +392,19 @@ $("document").ready(function(){
     // choose between linguistic context through back/next buttons
     // back button
     $(document).on("click", "#botContainer .botMsg .botText .back", function(){
+        $.ajax({
+            type: "POST",
+            url: "/workerClick",
+            data: JSON.stringify({
+                "b_name": "Clicked the back button"
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            }
+        });
+
         clearHighlight();
         clickCounter-=1;
         if (clickCounter<0)
@@ -355,6 +414,20 @@ $("document").ready(function(){
 
     // next button
     $(document).on("click", "#botContainer .botMsg .botText .next", function(){
+        $.ajax({
+            type: "POST",
+            url: "/workerClick",
+            data: JSON.stringify({
+                "b_name": "Clicked the next button"
+
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            }
+        });
+
         clearHighlight();
         clickCounter+=1;
         if (clickCounter > len_index_highlight_cxt)
@@ -373,27 +446,13 @@ $("document").ready(function(){
         $("#highlightCxt"+clickCounter+"").addClass('unfocused');
     }
 
-
     $(document).on("click", "#botContainer .botMsg .botText .collapsible", function() {
-        $(this)[0].classList.toggle("active");
-        var content = $(this)[0].nextElementSibling;
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
-
-    });
-
-    $(".submit_task").click(function (){
-        sendThanks();
 
         $.ajax({
             type: "POST",
-            url: "/endTime",
+            url: "/workerClick",
             data: JSON.stringify({
-                "endTask": true
-
+                "b_name": $(this)[0].innerText
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
@@ -402,10 +461,18 @@ $("document").ready(function(){
             }
         });
 
-        // setTimeout(()=>{
-        //     window.location.replace("https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_7VRHG9PMepAPyU6" + prolific_q_str);
-        // }, 1500)
+        $(this)[0].classList.toggle("active");
+        var content = $(this)[0].nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+
+
+
     });
+
 
 })
 

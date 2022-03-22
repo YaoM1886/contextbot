@@ -30,13 +30,11 @@
         </div>
 
         <div id="chatInput">
-            <form action="#" method="post">
-            <textarea id="textbox" name= "input_message" placeholder="As a coach, how would you respond to the user?"></textarea>
-                <button id="sendBtn" type="button">Send</button>
-                <span class="w3-tag w3-teal">You can type and send the response multiple times until you click <button class="submit_task" type="submit" style="color:#425B76">Submit Task</button> to finish.</span>
-            <!-- send button -->
 
-            </form>
+        <textarea id="textbox" name= "input_message" placeholder="As a coach, how would you respond to the user?"></textarea>
+            <button id="sendBtn" type="button">Send</button>
+            <span class="w3-tag w3-teal">You can type and send the response multiple times until you click <button class="submit_task" type="submit" style="color:#425B76">Submit Task</button> to finish.</span>
+        <!-- send button -->
 
         </div>
     </div>
@@ -49,6 +47,26 @@
     </div>
 
 </div>
+<script>
+    $(".submit_task").click(function (){
 
+        var prolific_q_str = window.location.search;
+        window.location.replace("https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_7VRHG9PMepAPyU6" + prolific_q_str);
+
+        $.ajax({
+            type: "POST",
+            url: "/endTime",
+            data: JSON.stringify({
+                "endTask": true
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            }
+        });
+
+    });
+</script>
 </body>
 </html>
