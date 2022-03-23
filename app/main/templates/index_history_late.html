@@ -1,0 +1,12 @@
+{% extends 'index_history.html' %}
+{% block content %}
+    {% block task_scripts %}
+        <script>
+            var prolific_q_str = window.location.search;
+            $(".start_task").click(function (){
+                window.location.replace("https://contextbot.herokuapp.com/main_history_late" + prolific_q_str);
+            })
+        </script>
+
+    {%  endblock %}
+{%  endblock %}

@@ -4,9 +4,48 @@ from flask import request, session, jsonify, redirect, render_template
 import datetime
 from app.main.models import Message, WorkerBehavior, TimeSpent, Worker
 
-@main.route('/')
-def index_MI():
-    return render_template("index_MI.html")
+@main.route('/MI_early')
+def index_MI_early():
+    return render_template("index_MI_early.html")
+
+
+@main.route('/MI_half')
+def index_MI_half():
+    return render_template("index_MI_half.html")
+
+
+@main.route('/MI_late')
+def index_MI_late():
+    return render_template("index_MI_late.html")
+
+@main.route('/non_MI_early')
+def index_non_MI_early():
+    return render_template("index_non_MI_early.html")
+
+
+@main.route('/non_MI_half')
+def index_non_MI_half():
+    return render_template("index_non_MI_half.html")
+
+
+@main.route('/non_MI_late')
+def index_non_MI_late():
+    return render_template("index_non_MI_late.html")
+
+
+@main.route('/history_early')
+def history_early():
+    return render_template("index_history_early.html")
+
+
+@main.route('/history_half')
+def history_half():
+    return render_template("index_history_half.html")
+
+
+@main.route('/history_late')
+def history_late():
+    return render_template("index_history_late.html")
 
 
 @main.route('/setTime', methods=['GET', 'POST'])
@@ -42,26 +81,27 @@ def message():
     message = Message(session["worker_id"], data["message"], data["status"], datetime.datetime.utcnow())
     db.session.add(message)
     db.session.commit()
-    return jsonify("Message recorded!")
+    return jsonify("Message changed!")
 
 
-@main.route('/early_MI')
-def early_MI():
+@main.route('/main_MI_early')
+def main_early_MI():
     return render_template("early_MI.html")
 
 
-@main.route('/half_MI')
+@main.route('/main_MI_half')
 def half_MI():
     return render_template("half_MI.html")
 
 
-@main.route('/late_MI')
+@main.route('/main_MI_late')
 def late_MI():
     return render_template("late_MI.html")
 
-@main.route('/early_history')
-def early_history():
-    return render_template("early_history.html")
+
+@main.route('/main_history_early')
+def main_history_early():
+    return render_template("main_history_early.html")
 
 
 ####################FUNCTIONS##########################3

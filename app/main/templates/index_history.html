@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- link for adding jquery to our document -->
+    <link rel="shortcut icon" href="#">
+
+    <!-- link for script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- link for css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link  rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/exp_MI.css')}}">
+    <title>Instructions for the worker</title>
+</head>
+<body>
+
+<div style="width: 750px; height: 600px; margin: auto; margin-top: 120px; font-size: 15px">
+    <h1 style="text-align: center">Instructions</h1>
+    <br>
+    <p>
+        Welcome to our crowd-powered conversational system! In this system, we will not show the real-time status of other crowd workers you are working with, but you will see the history of conversations that historical workers communicated with the user, which will be displayed in the center of the screen. The user's utterances are indicated after the <span class="user">User:</span> label, while the responses from the coach who is played by the historical workers are indicated after the <span class="coach">Coach:</span> label. <strong>You are required to continue to play the coach role and provide the user with a consistent response based on the previous conversation history</strong>. Whenever you are ready to respond, type your response to the user's last utterance in the input box.
+        <br><br>
+        Ready to help the depressed user? Click the button below to get started!
+    </p>
+    <br>
+    <p align="center"><button class=start_task style="height:75px;width:150px; font-size: 30px">Start Task</button></p>
+</div>
+
+</body>
+{% block task_scripts %}
+    <script></script>
+{% endblock task_scripts %}
+
+</html>
