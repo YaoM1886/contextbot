@@ -100,7 +100,7 @@ function callbackReply(replyBool, cxtTag){
 function addCxtPrompts(cxtTag){
     switch (cxtTag){
         case "social_cxt_MI":
-            messageText = `Your role is to act as a coach ${social_cxt_MI}. You need to let the user feel that he/she is being listened to and make the dialog engaging. How does that sound to you?`;
+            messageText = `Your role is to act as a coach ${social_cxt_MI}. You need to ${prompts_social_cxt_MI}. How does that sound to you?`;
             contextBotSendMessage(messageText);
             break;
         // add the link
@@ -137,7 +137,7 @@ function addCxtPrompts(cxtTag){
             break;
         default:
             messageText = `
-                <p>Congratulations! You have mastered all the context discussed earlier. It's time to respond to the user with MI techniques.</p>`;
+                <p>Congratulations! You have mastered all the context discussed earlier. It's time to respond to the user.</p>`;
             messageText1 = `<p>Below you will find the techniques commonly used for making better responses as a coach. Good luck!</p>`;
             contextBotSendMessage(messageText);
             setTimeout(()=>{contextBotSendMessage(messageText1)}, 2000);
@@ -235,7 +235,7 @@ $("document").ready(function(){
     $('#chatContainer').scrollTop($('#chatContainer')[0].scrollHeight);
 
 
-})
+});
 
 // after clicking the help icon, start the interaction with ContextBot
 $("#helpIcon").click(function(){
@@ -260,7 +260,7 @@ $("#helpIcon").click(function(){
 
 
     $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height="40%" width="40%" alt="Bot"/></div>`+"<div class='botText'>"+"Hi, I am your ContextBot today! I will walk you through the important contexts that have been talked in previous conversation turns."+"</div></div>");
-    $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height='40%' width='40%' alt='Bot' /></div>`+"<div class='botText'>"+"The contexts will help you better understand how the conversation comes to the current turn <code>Yes! It is so sad.</code> Shall we begin?"+"</div></div>");
+    $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height='40%' width='40%' alt='Bot' /></div>`+"<div class='botText'>"+"The contexts will help you better understand how the conversation comes to the current turn <code>"+historyUserText[historyUserText.length-1]+"</code> Shall we begin?"+"</div></div>");
 
     addQuickReplyBtn(["Sure, let us begin!", "Hmm...I think so."]);
     sendReply(callbackReply, "social_cxt_MI");

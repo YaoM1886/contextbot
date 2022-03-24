@@ -1,7 +1,18 @@
 {% extends 'chat_history.html' %}
-{% block content %}
-    {% block history_scripts %}
-        <script type="text/javascript" src="{{url_for('static', filename='js/early_MI.js')}}"></script>
 
-    {%  endblock %}
-{%  endblock %}
+{% block contextbot_scripts %}
+    <script type="text/javascript" src="{{url_for('static', filename='js/chat_history.js')}}"></script>
+    <script>
+        // insert the chat history here
+        const historyBotText = ["You are feeling upset and confused. One confusing thing, then, is you don\u2019t understand why you\u2019re doing what you\u2019re doing. What\u2019s been happening?", "This blowup wasn\u2019t the first time that\u2019s happened to you.", "Kind of like a pattern that\u2019s repeating itself."];
+        const historyUserText=
+            ["I feel like I am falling apart. I don\u2019t have any energy. I don\u2019t know what is going on with me.",
+                " I just broke up with my boyfriend. I mean we\u2019ve been living together and I thought he loved me, but he\u2019s just so distant. He won\u2019t talk to me, and I think maybe he\u2019s seeing someone else. Anyhow, he told me I\u2019m crazy.",
+                "Men just drive me crazy. This is the third guy I\u2019ve lived with, and they all kind of ended in the same way. I just seem to fall in love with the wrong guys.",
+                "Yes! It is so sad."];
+
+    </script>
+
+{%  endblock contextbot_scripts %}
+
+

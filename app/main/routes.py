@@ -85,23 +85,45 @@ def message():
 
 
 @main.route('/main_MI_early')
-def main_early_MI():
-    return render_template("early_MI.html")
+def main_MI_early():
+    return render_template("main_MI_early.html")
 
 
 @main.route('/main_MI_half')
-def half_MI():
-    return render_template("half_MI.html")
+def main_MI_half():
+    return render_template("main_MI_half.html")
 
 
 @main.route('/main_MI_late')
-def late_MI():
-    return render_template("late_MI.html")
+def main_MI_late():
+    return render_template("main_MI_late.html")
+
+@main.route('/main_non_MI_early')
+def main_non_MI_early():
+    return render_template("main_non_MI_early.html")
+
+
+@main.route('/main_non_MI_half')
+def main_non_MI_half():
+    return render_template("main_non_MI_half.html")
+
+
+@main.route('/main_non_MI_late')
+def main_non_MI_late():
+    return render_template("main_non_MI_late.html")
 
 
 @main.route('/main_history_early')
 def main_history_early():
     return render_template("main_history_early.html")
+
+@main.route('/main_history_half')
+def main_history_half():
+    return render_template("main_history_half.html")
+
+@main.route('/main_history_late')
+def main_history_late():
+    return render_template("main_history_late.html")
 
 
 ####################FUNCTIONS##########################3

@@ -13,28 +13,55 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!-- link for css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link  rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/exp_MI.css')}}">
 </head>
 <body>
+
 <div style="display:flex; justify-content:space-around">
     <div id="mainWindow">
         <!-- header element of webpage -->
         <div id="chatHeader">
             <!-- text in header -->
-            <h1>Be a coach and talk to the user...</h1>
+            <h3>Be a coach and talk to the user...</h3>
         </div>
         <!-- container or box for chat history -->
         <div id="chatContainer">
             <!-- area for texts   -->
         </div>
-
         <div id="chatInput">
             <textarea id="textbox" placeholder="As a coach, how would you respond to the user?"></textarea>
             <!-- send button -->
             <button id="sendBtn", type="button">Send</button><br>
+            <span class="w3-tag w3-teal">You can type and send the response multiple times until you click <button class="submit_task" type="submit" style="color:#425B76">Submit Task</button> to finish.</span>
         </div>
     </div>
+    {% block content %}
+    {%  endblock content %}
 
 </div>
+<script>
+    $(".submit_task").click(function (){
+
+        window.location.replace("https://qfreeaccountssjc1.az1.qualtrics.com/jfe/form/SV_7VRHG9PMepAPyU6" + prolific_q_str);
+
+        $.ajax({
+            type: "POST",
+            url: "/endTime",
+            data: JSON.stringify({
+                "endTask": true
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            }
+        });
+
+    });
+</script>
+{% block contextbot_scripts %}
+    <script></script>
+{% endblock contextbot_scripts %}
 </body>
 </html>
