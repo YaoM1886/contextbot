@@ -173,9 +173,9 @@ body{
     color: #425B76;
 
 }
-.thanksMsg{
-    text-align: center;
-    font-size: 20px;
+
+#linkToCxt{
+    color: blue;
 }
 
 .user{
