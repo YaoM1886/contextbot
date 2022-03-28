@@ -45,8 +45,15 @@ function sendReply(callbackReply, cxtTag){
 
 // control the conversational flow of context dimensions
 function callbackReply(replyBool, cxtTag){
+    if (replyBool && cxtTag == "greeting"){
+        addCxtPrompts("greeting");
+        setTimeout(()=>{
+            addQuickReplyBtn(["Sure, let us begin!", "Hmm...I think so."]);
+            $('#botContainer').scrollTop($('#botContainer')[0].scrollHeight);
+            sendReply(callbackReply, "social_cxt_MI");
+        },1800);
 
-    if (replyBool && cxtTag == "social_cxt_MI"){
+    }else if (replyBool && cxtTag == "social_cxt_MI"){
         addCxtPrompts("social_cxt_MI");
         setTimeout(() => {
             addQuickReplyBtn(["Yes, very clear!", "Well...I still don't understand."]);
@@ -260,10 +267,7 @@ $("#helpIcon").click(function(){
         "<div id='botWindow'><div id='botHeader'><h5>Chat with me </h5> </div><div id='botContainer'></div></div>"
     );
 
-
-    addCxtPrompts("greeting");
-    addQuickReplyBtn(["Sure, let us begin!", "Hmm...I think so."]);
-    sendReply(callbackReply, "social_cxt_MI");
+    callbackReply(true, "greeting");
 
 });
 
