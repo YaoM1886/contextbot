@@ -99,6 +99,10 @@ function callbackReply(replyBool, cxtTag){
 // start the prompts with context
 function addCxtPrompts(cxtTag){
     switch (cxtTag){
+        case "greeting":
+            messageText = "Hi, I am your ContextBot today! I will walk you through the important contexts that have been talked in previous conversation turns. Shall we begin?";
+            contextBotSendMessage(messageText);
+            break;
         case "social_cxt_MI":
             messageText = `Your role is to act as a coach ${social_cxt_MI}. You need to ${prompts_social_cxt_MI}. How does that sound to you?`;
             contextBotSendMessage(messageText);
@@ -117,7 +121,7 @@ function addCxtPrompts(cxtTag){
             setTimeout(()=>{contextBotSendMessage(messageText3)}, 4000);
             break;
         case "cognitive_cxt_MI":
-            messageText1 = `Know yourself, know the enemy:) You don't have enemy here but a sad user and your peer workers. Find out what they intended to do in the previous turns.`
+            messageText1 = `Great! Now find out what the participants of the previous conversation were thinking about.`
             messageText2 = `
                 <p>Click each of them to see the intention:</p>
                 <button class="collapsible">User's intention</button>
@@ -137,11 +141,9 @@ function addCxtPrompts(cxtTag){
             break;
         default:
             messageText = `
-                <p>Congratulations! You have mastered all the context discussed earlier. It's time to respond to the user.</p>`;
-            messageText1 = `<p>Below you will find the techniques commonly used for making better responses as a coach. Good luck!</p>`;
+                <p>Congratulations! You've known all the relevant information discussed earlier.</p>`;
             contextBotSendMessage(messageText);
-            setTimeout(()=>{contextBotSendMessage(messageText1)}, 2000);
-            setTimeout(()=>{contextBotSendMessage(prompts_MI)}, 4000);
+            setTimeout(()=>{contextBotSendMessage(prompts_MI)}, 2000);
 
     }
 }
@@ -259,9 +261,7 @@ $("#helpIcon").click(function(){
     );
 
 
-    $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height="40%" width="40%" alt="Bot"/></div>`+"<div class='botText'>"+"Hi, I am your ContextBot today! I will walk you through the important contexts that have been talked in previous conversation turns."+"</div></div>");
-    $("#botContainer").append("<div class='botMsg'>"+`<div class='botImg'><img src='/static/img/bot.jpg' height='40%' width='40%' alt='Bot' /></div>`+"<div class='botText'>"+"The contexts will help you better understand how the conversation comes to the current turn <code>"+historyUserText[historyUserText.length-1]+"</code> Shall we begin?"+"</div></div>");
-
+    addCxtPrompts("greeting");
     addQuickReplyBtn(["Sure, let us begin!", "Hmm...I think so."]);
     sendReply(callbackReply, "social_cxt_MI");
 
