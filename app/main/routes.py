@@ -59,8 +59,9 @@ def setTime():
 @main.route('/endTime', methods=['POST'])
 def endTime():
     session['end_time'] = datetime.datetime.utcnow()
+    data = request.get_json()
     if ('start_time' and "worker_id") in session:
-        db.session.add(TimeSpent("TotalTask", session["worker_id"], session["start_time"], session["end_time"]))
+        db.session.add(TimeSpent(data["expCondition"], session["worker_id"], session["start_time"], session["end_time"]))
         db.session.commit()
 
     return jsonify("Task submitted!")

@@ -49,7 +49,8 @@
             type: "POST",
             url: "/endTime",
             data: JSON.stringify({
-                "endTask": true
+                "endTask": true,
+                "expCondition": window.location.href.split("com/")[1].split("?PROLIFIC")[0]
             }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
