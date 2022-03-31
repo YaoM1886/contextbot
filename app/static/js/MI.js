@@ -264,7 +264,7 @@ $("#helpIcon").click(function(){
 
     // initial greetings from ContextBot
     $(this).replaceWith(
-        "<div id='botWindow'><div id='botHeader'><h5>Get help from the ContextBot </h5> </div><div id='botContainer'></div></div>"
+        "<div id='botWindow'><div id='botHeader'><h5>Get help from ContextBot </h5> </div><div id='botContainer'></div></div>"
     );
 
     callbackReply(true, "greeting");
