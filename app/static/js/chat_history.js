@@ -39,13 +39,32 @@ $("#textbox").keypress(function(event){
     }
 });
 
-$("#sendBtn").on("click", function(){
+$("#sendBtn").on("click", function(e){
     var newmsg=$("#textbox").val();
     if (newmsg == ""){
         e.preventDefault();
         $(".submit_task").prop("disabled", true);
     }else {
         $(".submit_task").prop("disabled", false);
+        $(".submit_task").click(function (){
+            task_type = window.location.href.split("com/")[1].split("?PROLIFIC")[0];
+            window.location.replace("https://tudelft.fra1.qualtrics.com/jfe/form/SV_1NtVVn8veUJwjBk" + prolific_q_str + "&TASK_TYPE=" + task_type);
+
+            $.ajax({
+                type: "POST",
+                url: "/endTime",
+                data: JSON.stringify({
+                    "endTask": true,
+                    "expCondition": task_type
+                }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data) {
+                    console.log(JSON.stringify(data));
+                }
+            });
+
+        });
 
         $.ajax({
             type: "POST",
