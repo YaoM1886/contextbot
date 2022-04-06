@@ -41,6 +41,8 @@
 
 </div>
 <script>
+
+    window.onbeforeunload = function() { return "If you refresh this page, your progress will be lost!"; };
     $(".submit_task").click(function (){
         task_type = window.location.href.split("com/")[1].split("?PROLIFIC")[0];
         window.location.replace("https://tudelft.fra1.qualtrics.com/jfe/form/SV_1NtVVn8veUJwjBk" + prolific_q_str + "&TASK_TYPE=" + task_type);

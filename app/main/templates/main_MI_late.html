@@ -25,12 +25,11 @@
         const prompts_social_cxt_MI = "strengthen the user's faith of following the plan";
         const linguistic_cxt_MI = `First I guess you'd like to click <a href="#highlightCxt0" id="linkToCxt">"friends"</a> to see to which content it refers in the previous chat. Use <code>Back</code> <button class="back">Back</button> and <code>Next</code> <button class="next">Next</button> to navigate through multiple sentences.`;
         const semantic_cxt_MI = `<ul>
-<li>The user does not know why she keeps destroying relationships. </li>
-<li>She wants to have a warm and loving relationship in the long-term.</li>
-<li>She was depressed and wants to feel happy again. </li>
+<li>The user has broken up with her boyfriend. </li>
+<li>She feels upset and confused by what's happened to her past awful relationships.</li>
+<li>She is depressed and wants to feel happy again. </li>
+<li>She thinks she is a burden to her friends and feels like her friends avoid her.</li>
 <li>She is a resourceful person. She moved to the current place from Ireland all on her own and set up a new life for herself.</li>
-<li>She thinks she is a burden to her friends.</li>
-<li>She feels like her friends avoid her.</li>
 <li>She has told the coach in the past how she lift her mood, such as going to see a funny and romantic movie, getting out of her apartment for a walk, and seeing friends.</li>
 </ul>`;
         const prompts_semantic_cxt_MI = `The highlighted texts you've seen on the left chat window show the relevant situation which the sentence <a href='#highlightCxt0' id='linkToCxt'>"friends"</a> refers to. How about you let me give you more context and then you can know better?`;
@@ -38,14 +37,19 @@
 <dd>find ways to lift her mood;</dd>
 </dl>`;
         const cognitive_cxt_MI_2 = `<dl>
-<dd>confirm the goal of the user and has asked for elaboration on how the user used to lift her mood by using reflections and evocative questions to elicit the hunches and preferences of the user;</dd>
+<dd>improve the user's mood by asking relevant open-ended questions, demonstrating empathy, and reflecting and confirming the user's concerns in order to elicit the user's feelings and preferences;</dd>
 </dl>`;
         const cognitive_cxt_MI_3 = `<dl>
-<dd><strong>summarize</strong> the methods that the user has mentioned to lift her mood and propose open questions to generate more alternatives.</dd>
+<dd>
+(1) start with <strong>affirming and reflecting</strong> the user's descriptions;
+<br>(2) <strong>summarize</strong> the activities that the user has mentioned to lift her mood;
+<br>(3) propose open questions to <strong>ask further alternative options</strong> that the user could use to relieve her tension;</dd>
 </dl>`;
-        const prompts_MI = `Feel free to use the techniques below for making better responses as a coach. Good luck! <br><br>
-<dl><dt>Summarising:</dt><dd>You summarise the discussion up until the current moment. You should collect the events/keywords discussed in the historical context by organizing them with "You said A and B and that you think that A is useful to you, while B is not. You would like to try C then...Did I leave anything out?"</dd></dl>
-<dl><dt>Affirmations:</dt><dd>You use positive emotions to encourage the user, such as "I appreciate your willingness to share so openly"; "I see you are being honest"...</dd></dl>`;
+        const prompts_MI = `Feel free to use the tips below for making better responses as a coach. Good luck! <br><br>
+<dl><dt>Affirmations:</dt><dd>You use positive emotions to encourage the user, e.g. "I appreciate your willingness to share so openly"; "I see you are being honest"...</dd></dl>
+<dl><dt>Reflective listening:</dt><dd>This involves listening to what the user means; it requires you to be aware of nuance in their expressions and not be judgmental, e.g. "I know that annoyed you"; "You don't know what to do about that"...</dd></dl>
+<dl><dt>Summarising:</dt><dd>You summarise the discussion up until the current moment. You should collect the events/keywords discussed in the historical context by organizing them like "You said A and B and that you think that A is useful to you, while B is not. You would like to try C then...Did I leave anything out?"...</dd></dl>
+<dl><dt>Open question:</dt><dd>Questions that guide the user to further think about options of the change plan, e.g. "In what ways would it be good for you to...?"; "What are your hopes for...?"...</dd></dl>`;
 
 
         // insert the chat history here

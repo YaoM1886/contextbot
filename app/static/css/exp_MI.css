@@ -131,11 +131,12 @@ body{
 .userMsg{
     text-align: left;
     width: 450px;
+    margin-left: 15px;
 }
 .coachMsg{
     text-align: right;
     width: 450px;
-    /*margin-right: 20px;*/
+    margin-right: 15px;
     margin-left: auto;
 }
 

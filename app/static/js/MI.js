@@ -275,40 +275,46 @@ $("#helpIcon").click(function(){
 $("#textbox").keypress(function(event){
     //    to check only for enter key (13 is value for enter)
     if(event.which==13){
-        $("#sendBtn").click();
 
-        // to prevent creating new line on pressing Enter key, when checkbox is checked
+        $("#sendBtn").click();
         event.preventDefault();
+
     }
 });
 
-$("#sendBtn").on("click", function(){
+$("#sendBtn").on("click", function(e){
     var newmsg=$("#textbox").val();
+    if (newmsg == ""){
+            e.preventDefault();
+            $(".submit_task").prop("disabled", true)
+    }else{
+        $.ajax({
+            type: "POST",
+            url: "/message",
+            data: JSON.stringify({
+                "message": newmsg,
+                "status": "Added"
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            }
+        });
 
-    $.ajax({
-        type: "POST",
-        url: "/message",
-        data: JSON.stringify({
-            "message": newmsg,
-            "status": "Added"
-        }),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function(data) {
-            console.log(JSON.stringify(data));
-        }
-    });
+        // before clearing the textbox we store its values in variable newmsg
+        $("#textbox").val("");
+        // to display users message on screen
+        $("#chatContainer").append("<div class='coachMsg'>"+"<span class='coach'>Coach: </span>"+"<span>"+newmsg+"</span>"+"&nbsp;"+"<button type='reset' class='reset' style='font-size: 13px'>Reset</button>"+"</div>"+"<br>");
+        // to scroll the contents in container in case of overflow
+        $("#chatContainer").scrollTop($("#chatContainer").prop("scrollHeight"));
+        // converts all user inputs to lower case
+        $('#chatContainer').scrollTop($('#chatContainer')[0].scrollHeight);
+    }
 
-    // before clearing the textbox we store its values in variable newmsg
-    $("#textbox").val("");
-    // to display users message on screen
-    $("#chatContainer").append("<div class='coachMsg'>"+"<span class='coach'>Coach: </span>"+"<span>"+newmsg+"</span>"+"&nbsp;"+"<button type='reset' class='reset' style='font-size: 13px'>Reset</button>"+"</div>"+"<br>");
-    // to scroll the contents in container in case of overflow
-    $("#chatContainer").scrollTop($("#chatContainer").prop("scrollHeight"));
-    // converts all user inputs to lower case
-    $('#chatContainer').scrollTop($('#chatContainer')[0].scrollHeight);
 
 });
+
 
 $(document).on("click", "#chatContainer .coachMsg .reset", function (){
     $(this).parent().remove();
@@ -327,7 +333,6 @@ $(document).on("click", "#chatContainer .coachMsg .reset", function (){
         }
     });
 });
-
 
 $(document).on("click", "#botContainer .botMsg .botText #linkToCxt", function(){
     $.ajax({
