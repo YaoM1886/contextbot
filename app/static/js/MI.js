@@ -287,7 +287,7 @@ $("#sendBtn").on("click", function(e){
     if (newmsg == ""){
             e.preventDefault();
     }else{
-        // $(".submit_task").prop("disabled", false);
+        $(".submit_task").prop("disabled", false);
         $(".submit_task").click(function (){
             task_type = window.location.href.split("com/")[1].split("?PROLIFIC")[0];
             window.location.replace("https://tudelft.fra1.qualtrics.com/jfe/form/SV_1NtVVn8veUJwjBk" + prolific_q_str + "&TASK_TYPE=" + task_type);
@@ -337,6 +337,7 @@ $("#sendBtn").on("click", function(e){
 
 
 $(document).on("click", "#chatContainer .coachMsg .reset", function (){
+    $(".submit_task").prop("disabled", true);
     $(this).parent().remove();
     $("#textbox").val($(this).prev().text());
     $.ajax({
