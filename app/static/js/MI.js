@@ -286,8 +286,9 @@ $("#sendBtn").on("click", function(e){
     var newmsg=$("#textbox").val();
     if (newmsg == ""){
             e.preventDefault();
-            $(".submit_task").prop("disabled", true)
+            $(".submit_task").prop("disabled", true);
     }else{
+        $(".submit_task").prop("disabled", false);
         $.ajax({
             type: "POST",
             url: "/message",
