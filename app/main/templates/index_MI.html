@@ -15,23 +15,29 @@
     <title>Instructions for the worker</title>
 </head>
 <body>
+<div class="container">
 
-<div style="width: 750px; height: 600px; margin: auto; margin-top: 60px; font-size: 15px">
+<div class="row">
+<div style="width: 650px; height: 500px; margin: auto; margin-top: 60px; margin-left: 0px; font-size: 15px" class="col-sm-2" >
     <h1 style="text-align: center">Instructions</h1>
     <br>
     <p>
-        Welcome to our crowd-powered conversational system! In this system, we will not show the real-time status of other crowd workers you are working with, but you will see the history of conversations that historical workers communicated with the user, which will be displayed in the left window of the screen. The user's utterances are indicated after the <span class="user">User:</span> label, while the responses from the coach who is played by the historical workers are indicated after the <span class="coach">Coach:</span> label. <strong>You are required to continue to play the coach role and provide the user with a consistent response based on the previous conversation history</strong>. Whenever you are ready to respond, type your response to the user's last utterance in the input box.
+        Welcome to our crowd-powered conversational system! In this system, we will not show the real-time status of other crowd workers you are working with, but you will see the history of conversations that users had with other workers. This will be displayed in a window on the left of your screen. The user's utterances are indicated after the <span class="user">User:</span> label, while the responses from the coach who is played by the previous workers are indicated after the <span class="coach">Coach:</span> label. <strong>You are required to continue to play the coach role and provide the user with a consistent response based on the history of the ongoing conversation</strong>. Whenever you are ready to respond, type your response to the user's last utterance in the input box.
         <br><br>
-        If you're having trouble understanding the user's concerns, the chatbot, which can be accessed by selecting the button on the right side of the screen, can assist you.
+        To help you quickly understand the user's concerns, a chatbot, which can be accessed by selecting the button on the right side of the screen, can assist you.
         <br><br>
-        Also, because you are playing the role of a coach, having some affective support skills will definitely help. You will be required to adhere to sound affective support techniques. Our chatbot will provide you some advice based on a well-known psychological approach known as motivational interviewing. This involves <strong>talking with empathy and a genuine interest in the user's experience and perspective</strong>. Don't worry, our chatbot will assist you with some tips on that.
+        Also, because you are playing the role of a coach, having some affective support skills will definitely help. You will be required to adhere to sound affective support techniques. Our chatbot will provide you some advice based on a well-known psychological approach known as motivational interviewing. This involves <strong>talking with empathy and showing a genuine interest in the user's experience and perspective</strong>. Don't worry, our chatbot will assist you with some tips on that.
         <br><br>
         Ready to help the depressed user? Click the button below to get started!
     </p>
     <br>
     <p align="center"><button class=start_task style="height:75px;width:150px; font-size: 30px">Start Task</button></p>
 </div>
-
+    <div class="col-sm-2" style="margin-top: 200px">
+        <img src="{{url_for('static', filename='img/MI_screenshot.png')}}" width="600px" height="350px"/>
+    </div>
+</div>
+</div>
 </body>
 {% block task_scripts %}
     <script></script>

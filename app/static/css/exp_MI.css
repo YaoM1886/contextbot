@@ -12,7 +12,7 @@ body{
     width: 650px;
     height: 60px;
     margin-left: 80px;
-    margin-top: 60px;
+    margin-top: 40px;
     background-color:#425B76;
 }
 /* styling text to be displayed on header */
@@ -91,7 +91,7 @@ body{
     height: 710px;
     margin-right: 100px;
     margin-left: auto;
-    margin-top: 60px;
+    margin-top: 40px;
 
 }
 

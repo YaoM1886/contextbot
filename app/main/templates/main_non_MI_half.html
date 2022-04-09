@@ -23,7 +23,7 @@
         // different dimensions of contexts
         const social_cxt_MI = "to respond the user according to the historical context in this session";
         const prompts_social_cxt_MI = "keep your response <strong>as consistent as the previous turns</strong>";
-        const linguistic_cxt_MI = `First I guess you'd like to click <a href="#highlightCxt0" id="linkToCxt">"it's possible"</a> to see to which content it refers in the previous chat. Use <code>Back</code> <button class="back">Back</button> and <code>Next</code> <button class="next">Next</button> to navigate through multiple sentences.`;
+        const linguistic_cxt_MI = `First I guess you'd like to know what the user is referring to with “it's possible” in the last utterance.<br><br>Click <a href="#highlightCxt0" id="linkToCxt">*here*</a> to see the content the user is referring to. Use <button class="back">Back</button> and <button class="next">Next</button> to navigate through multiple sentences.`;
         const semantic_cxt_MI = `<ul>
 <li>The user has broken up with her boyfriend. </li>
 <li>She feels upset and confused by what's happened to her past awful relationships.</li>
@@ -34,7 +34,7 @@
         const cognitive_cxt_MI_1 = "<dl><dd>seek for help and reasons with her down emotions and bad relationships;</dd></dl>";
         const cognitive_cxt_MI_2 = "<dl><dd> provide consistent responses;</dd></dl>";
         const cognitive_cxt_MI_3 = "<dl><dd>continue providing <strong>consistent </strong>responses.</dd></dl>";
-        const prompts_MI = `Feel free to use the tips below for making better responses as a coach. Good luck! <br><br>
+        const prompts_MI = `I think you’re ready to help this user out. Feel free to use the tips below for making better responses as a coach. I’m off to help others now, good luck!&#128521; <br><br>
 <dl><dt>Empathy:</dt><dd>This involves showing your cognitive perception of the user's situation and your understanding for the feeling. For example: "Is there anything that I can..."; "I know that you are feeling...".</dd></dl>
                 <dl><dt>Active listening:</dt><dd>You need to show you are there and listening to the user, such as "You feel anxious because you are..."; "I see you are..."</dd></dl>`;
 

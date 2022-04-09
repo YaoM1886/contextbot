@@ -78,7 +78,7 @@ function callbackReply(replyBool, cxtTag){
     }else if (replyBool && cxtTag == "cognitive_cxt_MI"){
         addCxtPrompts("cognitive_cxt_MI");
         setTimeout(() => {
-            addQuickReplyBtn(["Wow, I think I've known enough!", "Okay, anything else?"]);
+            addQuickReplyBtn(["Wow, I think I know enough now!", "Okay, anything else?"]);
             $('#botContainer').scrollTop($('#botContainer')[0].scrollHeight);
             sendReply(callbackReply, "templates_MI");
         }, 6000);
@@ -107,7 +107,7 @@ function callbackReply(replyBool, cxtTag){
 function addCxtPrompts(cxtTag){
     switch (cxtTag){
         case "greeting":
-            messageText = "Hi, I am your ContextBot today! I will walk you through the important contexts that have been talked in previous conversation turns. Shall we begin?";
+            messageText = "Hi, I am ContextBot&#128522;! I will walk you through the important contexts that have been talked in previous conversation turns. Shall we begin?";
             contextBotSendMessage(messageText);
             break;
         case "social_cxt_MI":
@@ -148,7 +148,7 @@ function addCxtPrompts(cxtTag){
             break;
         default:
             messageText = `
-                <p>Congratulations! You've known all the relevant information discussed earlier.</p>`;
+                <p>Congratulations! You know all the key and relevant information that was discussed.</p>`;
             contextBotSendMessage(messageText);
             setTimeout(()=>{contextBotSendMessage(prompts_MI)}, 2000);
 

@@ -15,12 +15,14 @@
     <title>Instructions for the worker</title>
 </head>
 <body>
+<div class="container">
+<div class="row">
 
-<div style="width: 750px; height: 600px; margin: auto; margin-top: 120px; font-size: 15px">
+<div style="width: 750px; height: 600px; margin: auto; margin-top: 120px; font-size: 15px" class="col-sm-2">
     <h1 style="text-align: center">Instructions</h1>
     <br>
     <p>
-        Welcome to our crowd-powered conversational system! In this system, we will not show the real-time status of other crowd workers you are working with, but you will see the history of conversations that historical workers communicated with the user, which will be displayed in the center of the screen. The user's utterances are indicated after the <span class="user">User:</span> label, while the responses from the coach who is played by the historical workers are indicated after the <span class="coach">Coach:</span> label. <strong>You are required to continue to play the coach role and provide the user with a consistent response based on the previous conversation history</strong>. Whenever you are ready to respond, type your response to the user's last utterance in the input box.
+        Welcome to our crowd-powered conversational system! In this system, we will not show the real-time status of other crowd workers you are working with, but you will see the history of conversations that users had with other workers. This will be displayed in a window on the left of your screen. The user's utterances are indicated after the <span class="user">User:</span> label, while the responses from the coach who is played by the previous workers are indicated after the <span class="coach">Coach:</span> label. <strong>You are required to continue to play the coach role and provide the user with a consistent response based on the history of the ongoing conversation</strong>. Whenever you are ready to respond, type your response to the user's last utterance in the input box.
         <br><br>
         Ready to help the depressed user? Click the button below to get started!
     </p>
@@ -28,6 +30,12 @@
     <p align="center"><button class=start_task style="height:75px;width:150px; font-size: 30px">Start Task</button></p>
 </div>
 
+    <div class="col-sm-2" style="margin-top: 80px">
+        <img src="{{url_for('static', filename='img/history_screenshot.png')}}" width="500" height="500"/>
+    </div>
+
+</div>
+</div>
 </body>
 {% block task_scripts %}
     <script></script>
