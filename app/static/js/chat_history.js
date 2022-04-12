@@ -1,5 +1,5 @@
 // extract worker's prolific ID
-var prolific_q_str = window.location.search;
+const prolific_q_str = window.location.search;
 const w_id = prolific_q_str.split("?PROLIFIC_PID=")[1]
 
 // start loading the experiment page
@@ -45,25 +45,6 @@ $("#sendBtn").on("click", function(e){
         e.preventDefault();
     }else {
         $(".submit_task").prop("disabled", false);
-        $(".submit_task").click(function (){
-            task_type = window.location.href.split("com/")[1].split("?PROLIFIC")[0];
-            window.location.replace("https://tudelft.fra1.qualtrics.com/jfe/form/SV_1NtVVn8veUJwjBk" + prolific_q_str + "&TASK_TYPE=" + task_type);
-
-            $.ajax({
-                type: "POST",
-                url: "/endTime",
-                data: JSON.stringify({
-                    "endTask": true,
-                    "expCondition": task_type
-                }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function(data) {
-                    console.log(JSON.stringify(data));
-                }
-            });
-
-        });
 
         $.ajax({
             type: "POST",

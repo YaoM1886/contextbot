@@ -40,7 +40,28 @@
     {%  endblock content %}
 
 </div>
+<script>
+    const prolific_q_str = window.location.search;
+    const task_type = window.location.href.split("com/")[1].split("?PROLIFIC")[0];
+    $(".submit_task").click(function (){
+        window.location.replace("https://tudelft.fra1.qualtrics.com/jfe/form/SV_1NtVVn8veUJwjBk" + prolific_q_str + "&TASK_TYPE=" + task_type);
 
+        $.ajax({
+            type: "POST",
+            url: "/endTime",
+            data: JSON.stringify({
+                "endTask": true,
+                "expCondition": task_type
+            }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {
+                console.log(JSON.stringify(data));
+            }
+        });
+
+    });
+</script>
 {% block contextbot_scripts %}
     <script></script>
 {% endblock contextbot_scripts %}
