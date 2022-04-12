@@ -3,6 +3,7 @@ const w_id = prolific_q_str.split("?PROLIFIC_PID=")[1]
 
 // start loading the experiment page
 $("document").ready(function(){
+    $(".submit_task").prop("disabled", true);
     $.ajax({
         type: "POST",
         url: "/setTime",
