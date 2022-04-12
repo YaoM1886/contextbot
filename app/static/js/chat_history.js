@@ -1,5 +1,4 @@
 // extract worker's prolific ID
-const prolific_q_str = window.location.search;
 const w_id = prolific_q_str.split("?PROLIFIC_PID=")[1]
 
 // start loading the experiment page
@@ -43,9 +42,9 @@ $("#sendBtn").on("click", function(e){
     var newmsg=$("#textbox").val();
     if (newmsg == ""){
         e.preventDefault();
+        $(".submit_task").prop("disabled", true);
     }else {
         $(".submit_task").prop("disabled", false);
-
         $.ajax({
             type: "POST",
             url: "/message",
