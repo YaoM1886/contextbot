@@ -292,7 +292,6 @@ $("#sendBtn").on("click", function(e){
             $(".submit_task").prop("disabled", true);
     }else{
         $(".submit_task").prop("disabled", false);
-
         $.ajax({
             type: "POST",
             url: "/message",
