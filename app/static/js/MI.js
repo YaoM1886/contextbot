@@ -1,6 +1,3 @@
-// extract worker's prolific ID
-const prolific_q_str = window.location.search;
-const w_id = prolific_q_str.split("?PROLIFIC_PID=")[1]
 
 // identify the positivity or negativity of the quickReply button by regex processing
 function preprocessReply(reply_string){
@@ -209,6 +206,8 @@ function clearHighlight(){
 
 // start loading the experiment page
 $("document").ready(function(){
+    const prolific_q_str = window.location.search;
+    const w_id = prolific_q_str.split("?PROLIFIC_PID=")[1];
     $.ajax({
         type: "POST",
         url: "/setTime",
