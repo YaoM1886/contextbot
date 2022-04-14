@@ -62,7 +62,7 @@ $("#sendBtn").on("click", function(e){
         // before clearing the textbox we store its values in variable newmsg
         $("#textbox").val("");
         // to display users message on screen
-        $("#chatContainer").append("<div class='coachMsg'>" + "<span class='coach'>Coach: </span>" + "<span>" + newmsg + "</span>" + "&nbsp;" + "<button type='reset' class='reset' style='font-size: 13px'>Reset</button>" + "</div>" + "<br>");
+        $("#chatContainer").append("<div class='coachMsg'>" + "<span class='coach'>Coach: </span>" + "<span>" + newmsg + "</span>" + "&nbsp;" + "<button type='reset' class='reset' style='font-size: 13px'>Edit</button>" + "</div>" + "<br>");
         // to scroll the contents in container in case of overflow
         $("#chatContainer").scrollTop($("#chatContainer").prop("scrollHeight"));
         // converts all user inputs to lower case
